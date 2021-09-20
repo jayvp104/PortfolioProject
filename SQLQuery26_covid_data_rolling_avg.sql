@@ -1,6 +1,6 @@
 Select * from Portfolio..Covid_Death
 
---- rolling average for 7 days for each country
+--- rolling average for 7 days for each country as of on one day prior to the latest date
 WITH cte_covid_cases(population, continent, location,date, new_cases, days_rolling_avg_new_cases)
 AS
 (Select population, continent, location,  Convert(date, date) date, new_cases, 
@@ -19,7 +19,7 @@ order by location
 
 
 
---- rolling average for 7 days for each continent
+--- rolling average for 7 days for each continent as of on one day pior to the latest date
 WITH cte_covid_cases(population, continent, location, date, new_cases, days_rolling_avg_new_cases)
 AS
 (Select population, continent, location, Convert(date, date) date, new_cases, 
