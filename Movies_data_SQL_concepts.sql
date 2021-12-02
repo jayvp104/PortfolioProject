@@ -1,14 +1,15 @@
 select * from PortfolioProject..movies
 
-/*Concept used in this queries
-# Case statemnt
-# Select TOP
-# Group BY
-#ORDER BY
-#OVER()PARTITION BY
-#DENSE_RANK()
-#Common Table expression or CTE
-# Using CTE, table alias and Temporary tables alternatively to produce same outcome
+/*
+Concept used in this queries 
+# Case statemnt - Line 19
+# Select TOP - Line 37
+# Group BY - Line 34
+#ORDER BY - lIne 34
+#OVER()PARTITION BY - Line 49
+#DENSE_RANK() - Line 49
+#Common Table expression or CTE - Line 57
+# Using CTE, table alias and Temporary tables alternatively to produce same outcome - Line 57
 */
 
 
