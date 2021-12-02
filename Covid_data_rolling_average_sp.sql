@@ -1,4 +1,8 @@
 
+/*Creating a new table which combines columns from two tables, 
+joined them both on date and location */
+
+
 DROP TABLE if exists Portfolio.dbo.Covid_combined 
 Select dea.continent continent,
 	   dea.location location, 
@@ -23,33 +27,39 @@ from Portfolio.dbo.Covid_Death dea
 
 select * from Portfolio.dbo.Covid_combined
 
+
+/* Following query calculates weekly average for new tests, deaths, cases and vaccinations per location. 
+I have assigned it into a procedure, which would save it and can be called upon at a later date */
+
+
 Create PROC sp_weekly_rolling_average
 AS
+	
+	Select Continent, location, date, ISNULL(new_deaths, 0) new_deaths, 
+		CASE WHEN count(*) OVER(Partition by location Order by date ROWS 6 PRECEDING)> 6
+			THEN ISNULL(ROUND(AVG(new_deaths)OVER(Partition by location Order by date ROWS 6 PRECEDING), 2), 0)
+			ELSE 0
+			END AS Avg_New_deaths,
+		new_cases,
+		CASE WHEN count(*) OVER(Partition by location Order by date ROWS 6 PRECEDING)> 6
+			THEN ISNULL(Round(AVG(new_cases)OVER(Partition by location Order by date ROWS 6 PRECEDING), 2), 0)
+			ELSE 0
+			END AS Avg_New_Cases,
+		new_tests,
+		CASE WHEN count(*) OVER(Partition by location Order by date ROWS 6 PRECEDING)> 6
+			THEN ISNULL(Round(AVG(new_tests)OVER(Partition by location Order by date ROWS 6 PRECEDING), 2), 0)
+			ELSE 0
+			END AS Avg_New_tests,
+		new_vaccinations,
+		CASE WHEN count(*) OVER(Partition by location Order by date ROWS 6 PRECEDING)> 6
+			THEN ISNULL(Round(AVG(new_vaccinations)OVER(Partition by location Order by date ROWS 6 PRECEDING), 2), 0)
+			ELSE 0
+			END AS Avg_New_Vaccinations
 
-Select Continent, location, date, ISNULL(new_deaths, 0) new_deaths, 
-	CASE WHEN count(*) OVER(Partition by location Order by date ROWS 6 PRECEDING)> 6
-		THEN ISNULL(ROUND(AVG(new_deaths)OVER(Partition by location Order by date ROWS 6 PRECEDING), 2), 0)
-		ELSE 0
-		END AS Avg_New_deaths,
-	new_cases,
-	CASE WHEN count(*) OVER(Partition by location Order by date ROWS 6 PRECEDING)> 6
-		THEN ISNULL(Round(AVG(new_cases)OVER(Partition by location Order by date ROWS 6 PRECEDING), 2), 0)
-		ELSE 0
-		END AS Avg_New_Cases,
-	new_tests,
-	CASE WHEN count(*) OVER(Partition by location Order by date ROWS 6 PRECEDING)> 6
-		THEN ISNULL(Round(AVG(new_tests)OVER(Partition by location Order by date ROWS 6 PRECEDING), 2), 0)
-		ELSE 0
-		END AS Avg_New_tests,
-	new_vaccinations,
-	CASE WHEN count(*) OVER(Partition by location Order by date ROWS 6 PRECEDING)> 6
-		THEN ISNULL(Round(AVG(new_vaccinations)OVER(Partition by location Order by date ROWS 6 PRECEDING), 2), 0)
-		ELSE 0
-		END AS Avg_New_Vaccinations
-
-FROM Portfolio.dbo.Covid_combined
-WHERE continent IS NOT NULL
-ORDER BY location
+	FROM Portfolio.dbo.Covid_combined
+	WHERE continent IS NOT NULL
+	ORDER BY location
+	
 
 ;
 
