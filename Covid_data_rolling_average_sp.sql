@@ -1,6 +1,12 @@
 
-/*Creating a new table which combines columns from two tables, 
-joined them both on date and location */
+/*This script combines COVID-19 deaths and vaccination data into a single 
+consolidated table by joining on date and location, applying data type conversions, 
+and handling missing values with ISNULL. It then creates a stored procedure 
+to calculate 7-day rolling averages for key metrics such as new cases, deaths, 
+tests, and vaccinations using window functions (AVG with ROWS PRECEDING). 
+The main SQL concepts demonstrated include table creation with SELECT INTO, 
+joins, data type conversion (CONVERT), null handling, window functions, 
+stored procedures, and conditional logic with CASE. */
 
 
 DROP TABLE if exists Portfolio.dbo.Covid_combined 
@@ -64,4 +70,5 @@ AS
 ;
 
 EXEC sp_weekly_rolling_average
+
 
