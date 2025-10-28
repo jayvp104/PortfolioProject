@@ -1,0 +1,2 @@
+order_date,order_time,item_id,item_desc,customer_id,salutation,first_name,last_name,store_id,store_name,order_quantity,sale_price,discount_amt,coupon_amt,net_paid,net_paid_tax,net_profit
+10/15/23,7:15:47,102,Office,1,Mrs.,Jay,Dalton,5,Down Store,2,501.5,73.51,31.4,501.5,51.56,41.12

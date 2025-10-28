@@ -1,0 +1,101 @@
+item_id,item_desc,start_date,end_date,price,item_class,item_category
+1001,Office Chair,2023-11-05,2024-03-08,1967.81,Home Decor,Peripherals
+1002,Office Chair,2023-02-01,2023-10-09,536.82,Office Supplies,Peripherals
+1003,Smartphone,2023-11-19,2024-04-19,1894.61,Furniture,Lighting
+1004,Headphones,2023-10-09,2024-01-31,1931.06,Office Supplies,Mobile Devices
+1005,Keyboard,2023-11-21,2024-08-05,695.47,Office Supplies,Peripherals
+1006,Monitor,2023-05-18,2024-03-27,942.36,Electronics,Seating
+1007,Printer,2023-08-07,2023-12-24,849.02,Electronics,Lighting
+1008,Office Chair,2023-02-15,2023-05-09,1209.73,Office Supplies,Peripherals
+1009,Mouse,2023-07-25,2024-02-06,566.37,Office Supplies,Lighting
+1010,Mouse,2023-01-05,2023-12-19,1403.59,Furniture,Peripherals
+1011,Monitor,2023-01-08,2023-06-04,589.18,Office Supplies,Computers
+1012,Monitor,2023-07-08,2024-03-11,599.76,Electronics,Mobile Devices
+1013,Desk Lamp,2023-08-31,2024-01-30,1644.9,Electronics,Computers
+1014,Laptop,2023-01-06,2023-11-10,1330.68,Office Supplies,Mobile Devices
+1015,Printer,2023-01-14,2024-01-10,1400.35,Electronics,Computers
+1016,Office Chair,2023-09-13,2024-07-15,179.64,Home Decor,Lighting
+1017,Tablet,2023-04-30,2023-10-29,305.5,Office Supplies,Lighting
+1018,Mouse,2023-12-10,2024-06-02,73.57,Furniture,Seating
+1019,Monitor,2023-12-15,2024-01-24,367.09,Furniture,Lighting
+1020,Desk Lamp,2023-02-24,2023-05-01,632.23,Home Decor,Audio
+1021,Headphones,2023-07-22,2024-06-03,873.97,Furniture,Audio
+1022,Printer,2023-11-09,2024-04-25,145.96,Home Decor,Peripherals
+1023,Laptop,2023-08-12,2024-07-25,207.85,Electronics,Audio
+1024,Monitor,2023-07-11,2024-05-05,1642.27,Electronics,Computers
+1025,Printer,2023-12-03,2024-09-04,1865.0,Furniture,Lighting
+1026,Desk Lamp,2023-10-28,2024-09-28,1143.32,Electronics,Mobile Devices
+1027,Office Chair,2023-07-05,2023-11-21,1978.67,Office Supplies,Lighting
+1028,Laptop,2023-06-19,2023-10-24,816.01,Office Supplies,Mobile Devices
+1029,Monitor,2023-02-06,2024-01-16,1156.22,Furniture,Seating
+1030,Laptop,2023-09-06,2023-11-27,1144.99,Furniture,Computers
+1031,Monitor,2023-03-30,2023-06-20,652.21,Home Decor,Mobile Devices
+1032,Laptop,2023-05-16,2023-09-09,388.32,Electronics,Seating
+1033,Monitor,2023-02-09,2024-01-16,358.69,Home Decor,Peripherals
+1034,Desk Lamp,2023-08-02,2024-01-31,1897.67,Furniture,Lighting
+1035,Monitor,2023-03-30,2023-08-19,1011.67,Furniture,Computers
+1036,Tablet,2023-06-10,2023-07-16,1811.75,Office Supplies,Mobile Devices
+1037,Headphones,2023-10-16,2023-11-28,327.55,Electronics,Audio
+1038,Printer,2023-07-20,2024-05-10,122.52,Furniture,Computers
+1039,Mouse,2023-11-02,2024-04-13,747.65,Furniture,Mobile Devices
+1040,Laptop,2023-06-04,2023-09-10,1638.56,Office Supplies,Peripherals
+1041,Monitor,2023-07-24,2024-07-08,621.65,Home Decor,Computers
+1042,Monitor,2023-08-22,2024-05-02,47.18,Home Decor,Audio
+1043,Keyboard,2023-02-03,2023-09-21,574.53,Office Supplies,Audio
+1044,Office Chair,2023-02-02,2023-03-19,281.5,Office Supplies,Mobile Devices
+1045,Desk Lamp,2023-03-27,2023-11-03,762.86,Electronics,Seating
+1046,Mouse,2023-03-28,2023-10-24,473.0,Office Supplies,Computers
+1047,Monitor,2023-05-23,2023-07-28,591.98,Furniture,Mobile Devices
+1048,Keyboard,2023-07-07,2023-10-24,875.51,Electronics,Mobile Devices
+1049,Headphones,2023-02-19,2024-01-13,1781.68,Electronics,Mobile Devices
+1050,Office Chair,2023-03-06,2023-10-11,538.81,Office Supplies,Computers
+1051,Tablet,2023-03-24,2023-12-16,1997.15,Electronics,Seating
+1052,Smartphone,2023-05-07,2023-07-16,1346.16,Furniture,Mobile Devices
+1053,Mouse,2023-01-23,2023-03-07,572.46,Electronics,Mobile Devices
+1054,Smartphone,2023-09-20,2024-01-25,514.87,Electronics,Lighting
+1055,Office Chair,2023-09-19,2024-09-02,1088.28,Office Supplies,Computers
+1056,Keyboard,2023-08-18,2023-11-08,731.18,Electronics,Audio
+1057,Tablet,2023-11-11,2024-04-08,1757.28,Furniture,Peripherals
+1058,Keyboard,2023-07-24,2024-01-27,712.29,Office Supplies,Seating
+1059,Laptop,2023-06-26,2023-11-24,232.11,Electronics,Mobile Devices
+1060,Mouse,2023-07-02,2024-02-16,1308.57,Furniture,Audio
+1061,Smartphone,2023-05-26,2024-04-26,1546.31,Furniture,Audio
+1062,Tablet,2023-09-13,2024-08-14,1442.85,Home Decor,Lighting
+1063,Headphones,2023-05-28,2024-04-11,1695.44,Office Supplies,Peripherals
+1064,Smartphone,2023-01-20,2023-03-14,1591.32,Home Decor,Mobile Devices
+1065,Headphones,2023-05-24,2024-03-11,566.0,Furniture,Audio
+1066,Keyboard,2023-12-22,2024-09-17,167.31,Office Supplies,Lighting
+1067,Laptop,2023-09-16,2024-06-13,1099.19,Home Decor,Audio
+1068,Desk Lamp,2024-01-01,2024-09-27,1332.34,Office Supplies,Mobile Devices
+1069,Laptop,2023-01-02,2023-03-30,1348.99,Electronics,Computers
+1070,Desk Lamp,2023-08-08,2024-03-21,662.68,Office Supplies,Lighting
+1071,Mouse,2023-10-09,2024-03-09,465.66,Home Decor,Computers
+1072,Office Chair,2023-01-05,2023-06-09,1008.07,Electronics,Peripherals
+1073,Headphones,2023-12-13,2024-10-16,254.76,Home Decor,Audio
+1074,Smartphone,2023-08-14,2024-07-06,1011.62,Electronics,Mobile Devices
+1075,Mouse,2023-11-01,2024-10-11,752.88,Furniture,Mobile Devices
+1076,Smartphone,2023-09-13,2024-08-03,28.81,Home Decor,Peripherals
+1077,Printer,2023-10-10,2023-12-31,1723.7,Home Decor,Audio
+1078,Mouse,2023-04-10,2024-03-10,1613.84,Home Decor,Seating
+1079,Office Chair,2023-11-04,2024-08-13,658.69,Office Supplies,Audio
+1080,Mouse,2023-08-06,2024-03-08,977.88,Electronics,Peripherals
+1081,Desk Lamp,2023-05-29,2024-02-19,791.37,Furniture,Lighting
+1082,Smartphone,2023-11-18,2024-04-24,157.2,Home Decor,Seating
+1083,Mouse,2023-05-23,2024-03-15,717.53,Home Decor,Audio
+1084,Tablet,2023-06-24,2023-12-14,1128.41,Electronics,Seating
+1085,Headphones,2023-09-20,2024-05-28,1464.61,Electronics,Peripherals
+1086,Laptop,2023-09-04,2023-12-02,1327.83,Electronics,Mobile Devices
+1087,Mouse,2023-08-02,2024-04-29,1374.46,Furniture,Lighting
+1088,Keyboard,2023-12-22,2024-07-12,1791.87,Electronics,Audio
+1089,Keyboard,2023-04-22,2024-04-15,802.09,Furniture,Mobile Devices
+1090,Monitor,2023-08-21,2023-10-16,955.78,Office Supplies,Seating
+1091,Mouse,2023-09-28,2024-01-23,1232.13,Furniture,Computers
+1092,Mouse,2023-12-07,2024-03-29,1914.62,Home Decor,Peripherals
+1093,Printer,2023-01-28,2023-07-06,1421.27,Office Supplies,Computers
+1094,Mouse,2023-10-01,2024-01-30,1016.79,Home Decor,Computers
+1095,Headphones,2023-05-20,2023-11-12,1582.05,Home Decor,Audio
+1096,Desk Lamp,2023-12-03,2024-01-28,1256.7,Home Decor,Mobile Devices
+1097,Laptop,2023-08-23,2024-04-03,1610.75,Home Decor,Lighting
+1098,Mouse,2023-11-07,2024-10-04,1944.02,Office Supplies,Lighting
+1099,Office Chair,2023-11-30,2023-12-31,1524.86,Electronics,Lighting
+1100,Mouse,2023-01-28,2023-11-03,921.49,Furniture,Audio

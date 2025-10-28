@@ -1,0 +1,2 @@
+customer_id,salutation,first_name,last_name,birth_day,birth_month,birth_year,birth_country,email_address
+101,Mr.,Joe,Burrow,15,5,2000,India,jburrow@gmail.com

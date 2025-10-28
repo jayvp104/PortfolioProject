@@ -1,0 +1,803 @@
+------------------------------------------------------------------------------------------------------------------
+--Part 1: Landing Zone
+------------------------------------------------------------------------------------------------------------------
+--Creating Three schemas
+create or replace database my_project;
+
+create or replace schema landing_zone;
+create or replace schema curated_zone;
+create or replace schema consumption_zone;
+use database my_project;
+use schema landing_zone;
+show schemas;
+
+
+
+--create order, customer and item table in landing zone.
+create or replace table my_project.landing_zone.landing_item(
+    item_id varchar,
+    item_desc varchar,
+    start_date varchar,
+    end_date varchar,
+    price varchar,
+    item_class varchar,
+    item_category varchar
+) comment = 'This is item table within the landing schema';
+
+Create or replace table my_project.landing_zone.landing_customer(
+    customer_id varchar,
+    salutation varchar,
+    first_name varchar,
+    last_name varchar,
+    birth_day varchar,
+    birth_month varchar,
+    birth_year varchar,
+    birth_country varchar,
+    email_address varchar
+) comment = 'This is customer table within the landing schema';
+
+create or replace table my_project.landing_zone.landing_order (
+    order_date varchar,
+    order_time varchar,
+    item_id varchar,
+    item_desc varchar,
+    customer_id varchar,
+    salutation varchar,
+    first_name varchar,
+    last_name varchar,
+    store_id varchar,
+    store_name varchar,
+    order_quantity varchar,
+    sale_price varchar,
+    discount_amt varchar,
+    coupon_amt varchar,
+    net_paid varchar,
+    net_paid_tax varchar,
+    net_profit varchar
+) comment = 'This is order table within landing schema';
+
+show tables;
+
+--Creating the file format
+create or replace file format my_project.landing_zone.my_csv_v1_webui
+    type = 'CSV'
+    compression = 'auto'
+    field_delimiter = ','
+    record_delimiter = '\n'
+    skip_header = 1
+    field_optionally_enclosed_by = '\042'
+    null_if = ('\\N');
+
+
+--loading the data using Snowflake WebUI
+--customer_sample_100.csv => landing_customer
+--item_sample_100.csv => landing_item
+--order_sample_100.csv => landing_order
+
+
+select * from my_project.landing_zone.landing_customer;
+select * from my_project.landing_zone.landing_item;
+select * from my_project.landing_zone.landing_order;
+
+
+------------------------------------------------------------------------------------------------------------------
+--- Step 2 Create tables in curated zone and load data
+------------------------------------------------------------------------------------------------------------------
+
+use schema curated_zone;
+create or replace transient table curated_customer(
+customer_pk number autoincrement,
+    customer_id varchar(20),
+    salutation varchar(20),
+    first_name varchar(20),
+    last_name varchar(20),
+    birth_day number,
+    birth_month number,
+    birth_year number,
+    birth_country varchar(50),
+    email_address varchar(50)
+) comment =' This is customer table in the curated schema';
+
+create or replace transient table my_project.curated_zone.curated_item(
+    item_pk number autoincrement,
+    item_id varchar(16),
+    item_desc varchar,
+    start_date date,
+    end_date date,
+    price number(7, 2),
+    item_class varchar(50),
+    item_category varchar(50)
+) comment = 'This is item table within the curated schema';
+
+create or replace transient table curated_order (
+    order_pk number autoincrement,
+    order_date date,
+    order_time varchar,
+    item_id varchar(16),
+    item_desc varchar,
+    customer_id varchar(18),
+    salutation varchar(20),
+    first_name varchar(20),
+    last_name varchar(20),
+    store_id varchar(20),
+    store_name varchar(50),
+    order_quantity number,
+    sale_price number(7,2),
+    discount_amt number(7,2),
+    coupon_amt number(7,2),
+    net_paid number(7,2),
+    net_paid_tax number(7,2),
+    net_profit number(7,2)
+) comment = 'This is order table within curated schema';
+
+show tables;
+
+--Inseting data from landing zone tables into curated zone tables
+insert into my_project.curated_zone.curated_customer
+(   customer_id ,
+    salutation,
+    first_name ,
+    last_name ,
+    birth_day,
+    birth_month,
+    birth_year,
+    birth_country,
+    email_address)
+select customer_id ,
+    salutation,
+    first_name ,
+    last_name ,
+    birth_day,
+    birth_month,
+    birth_year,
+    birth_country,
+    email_address
+from my_project.landing_zone.landing_customer;
+
+insert into my_project.curated_zone.curated_item (
+    item_id ,
+    item_desc,
+    start_date,
+    end_date ,
+    price,
+    item_class,
+    item_category 
+)
+select 
+    item_id ,
+    item_desc,
+    start_date,
+    end_date ,
+    price,
+    item_class,
+    item_category 
+from my_project.landing_zone.landing_item;
+
+insert into my_project.curated_zone.curated_order (
+    order_date,
+    order_time,
+    item_id,
+    item_desc,
+    customer_id ,
+    salutation,
+    first_name,
+    last_name,
+    store_id ,
+    store_name,
+    order_quantity,
+    sale_price ,
+    discount_amt,
+    coupon_amt,
+    net_paid ,
+    net_paid_tax,
+    net_profit 
+)
+select 
+    order_date,
+    order_time,
+    item_id,
+    item_desc,
+    customer_id ,
+    salutation,
+    first_name,
+    last_name,
+    store_id ,
+    store_name,
+    order_quantity,
+    sale_price ,
+    discount_amt,
+    coupon_amt,
+    net_paid ,
+    net_paid_tax,
+    net_profit 
+from my_project.landing_zone.landing_order;
+
+update my_project.landing_zone.landing_item
+set item_id = substring(item_id, 1, 1)||substring(item_id, 3,2);
+select substring(item_id, 1, 1)||substring(item_id, 3,2) from my_project.landing_zone.landing_item;
+--verifying data got loaded properly
+select * from curated_customer;
+select * from my_project.curated_zone.curated_item;
+select * from my_project.curated_zone.curated_order;
+
+------------------------------------------------------------------------------------------------------------------
+--Part 3 Creating table under Consumption zone
+------------------------------------------------------------------------------------------------------------------
+use schema my_project.consumption_zone;
+
+Create or replace table item_dim (
+    item_dim_key number autoincrement,
+    item_id varchar(16),
+    item_desc varchar,
+    start_date date,
+    end_date date,
+    price number(7, 2),
+    item_class varchar(50),
+    item_category varchar(50),
+    added_timestamp timestamp default current_timestamp(),
+    updated_timestamp timestamp default current_timestamp(),
+    active_flag varchar(1) default 'Y'
+) comment = 'This is itemdim table in consumption schema';
+
+create or replace table customer_dim (
+    customer_dim_key number autoincrement,
+    customer_id varchar(16),
+    salutation varchar(20),
+    first_name varchar(20),
+    last_name varchar(20),
+    birth_day number,
+    birth_month number,
+    birth_year number,
+    birth_country varchar(50),
+    email_address varchar(50),
+    added_timestamp timestamp default current_timestamp(),
+    updated_timestamp timestamp default current_timestamp(),
+    active_flag varchar(1) default 'Y'
+
+) comment = 'This is customer dim table under the consumption schema';
+
+create or replace table order_fact (
+    order_fact_key number autoincrement,
+    customer_dim_key number, 
+    item_dim_key number,
+    order_date date,
+    order_count number,
+    order_quantity number,
+    sale_price number(7,2),
+    discount_amt number(7,2),
+    coupon_amt number(7,2),
+    net_paid number(7,2),
+    net_paid_tax number(7,2),
+    net_profit number(7,2)
+) comment = 'This is order fact table under consumption schema';
+
+show tables;
+
+
+---Inserting data into the consumption schema tables
+insert into my_project.consumption_zone.item_dim (
+    item_id ,
+    item_desc,
+    start_date,
+    end_date ,
+    price,
+    item_class,
+    item_category 
+)
+select 
+    item_id ,
+    item_desc,
+    start_date,
+    end_date ,
+    price,
+    item_class,
+    item_category 
+from my_project.curated_zone.curated_item;
+
+
+insert into my_project.consumption_zone.customer_dim
+(   customer_id ,
+    salutation,
+    first_name ,
+    last_name ,
+    birth_day,
+    birth_month,
+    birth_year,
+    birth_country,
+    email_address)
+select 
+    customer_id ,
+    salutation,
+    first_name ,
+    last_name ,
+    birth_day,
+    birth_month,
+    birth_year,
+    birth_country,
+    email_address
+from my_project.curated_zone.curated_customer;
+
+insert into my_project.consumption_zone.order_fact (
+    order_date,
+    customer_dim_key,
+    item_dim_key,
+    order_count,
+    order_quantity,
+    sale_price ,
+    discount_amt,
+    coupon_amt,
+    net_paid ,
+    net_paid_tax,
+    net_profit 
+)
+select 
+    co.order_date,
+    cd.customer_dim_key,
+    id.item_dim_key,
+    count(1) as order_count,
+    sum(order_quantity),
+    sum(sale_price) ,
+    sum(discount_amt),
+    sum(coupon_amt),
+    sum(net_paid) ,
+    sum(net_paid_tax),
+    sum(net_profit)
+from my_project.curated_zone.curated_order co
+left join my_project.consumption_zone.customer_dim  cd on cd.customer_id = co.customer_id
+left join my_project.consumption_zone.item_dim id on id.item_id = co.item_id 
+group by 
+    co.order_date,
+    cd.customer_dim_key,
+    id.item_dim_key
+order by co.order_Date;
+
+show tables;
+
+------------------------------------------------------------------------------------------------------------------
+--Part 4: Here we will create 3 stages and 3 pipe so continuous data can be loaded
+------------------------------------------------------------------------------------------------------------------
+use schema landing_zone;
+
+create or replace stage delta_orders_s3;
+create or replace stage delta_items_s3;
+create or replace stage delta_customers_s3;
+
+show stages;
+
+--Creating pipe 
+create or replace pipe order_pipe
+auto_ingest = true
+as
+     copy into landing_order from @delta_orders_s3
+     file_format= (type = csv compression = none skip_header = 1)
+     pattern = '.*order.*[.]csv' --get the file that has word order followed by csv extention.
+     on_error = continue;
+
+create or replace pipe item_pipe
+auto_ingest = true
+as
+     copy into landing_item from @delta_items_s3
+     file_format= (type = csv compression = none skip_header = 1)
+     pattern = '.*item.*[.]csv' --get the file that has word item followed by csv extention.
+     on_error = continue;
+
+create or replace pipe customer_pipe
+auto_ingest = true
+as
+     copy into landing_customer from @delta_customers_s3
+     file_format= (type = csv compression = none skip_header = 1)
+     pattern = '.*customer.*[.]csv' --get the file that has word customer followed by csv extention.
+     on_error = continue;
+
+--let's list all the pipes and make sure they are created properly
+show pipes;
+
+--let's check if they are running properly
+select system$pipe_status('order_pipe');
+select system$pipe_status('item_pipe');
+select system$pipe_status('customer_pipe');
+
+------------------------------------------------------------------------------------------------------------------
+--Part 5
+------------------------------------------------------------------------------------------------------------------
+use schema landing_zone;
+
+--creating 3 streams named item, customer, order 
+create or replace stream landing_customer_stm on table landing_customer
+append_only =  True;
+
+create or replace stream landing_item_stm on table landing_item
+append_only =  True;
+
+create or replace stream landing_order_stm on table landing_order
+append_only =  True;
+
+
+use schema curated_zone;
+
+
+--Creating task to update order table in curated zone from landing stream
+create or replace task order_curated_tsk
+    warehouse = compute_wh
+    schedule = '1 minute'
+when 
+    system$stream_has_data('my_project.landing_zone.landing_order_stm')
+as
+    merge into my_project.curated_zone.curated_order c
+    using my_project.landing_zone.landing_order_stm l on 
+    c.order_date = l.order_date and
+    c.order_time = l.order_time and 
+    c.item_id = l.item_id and
+    c.item_desc = l.item_desc
+when matched 
+    then update set 
+        c.customer_id = l.customer_id ,
+        c.salutation = l.salutation,
+        c.first_name = l.first_name,
+        c.last_name = l.last_name,
+        c.store_id = l.store_id,
+        c.store_name = l.store_name,
+        c.order_quantity = l.order_quantity,
+        c.sale_price = l.sale_price,
+        c.discount_amt = l.discount_amt,
+        c.coupon_amt = l.coupon_amt,
+        c.net_paid = l.net_paid,
+        c.net_paid_tax = l.net_paid_tax,
+        c.net_profit = l.net_profit 
+when not matched then
+    insert (
+        order_date,
+        order_time,
+        item_id,
+        item_desc, 
+        customer_id,
+        salutation,
+        first_name,
+        last_name,
+        store_id,
+        store_name,
+        order_quantity,
+        sale_price,
+        discount_amt,
+        coupon_amt,
+        net_paid,
+        net_paid_tax,
+        net_profit)
+    values (
+        l.order_date,
+        l.order_time,
+        l.item_id,
+        l.item_desc, 
+        l.customer_id,
+        l.salutation,
+        l.first_name,
+        l.last_name,
+        l.store_id,
+        l.store_name,
+        l.order_quantity,
+        l.sale_price,
+        l.discount_amt,
+        l.coupon_amt,
+        l.net_paid,
+        l.net_paid_tax,
+        l.net_profit);
+
+
+create or replace task customer_curated_tsk
+    warehouse = compute_wh
+    schedule = '2 minute'
+when 
+    system$stream_has_data('my_project.landing_zone.landing_customer_stm')
+as
+    merge into my_project.curated_zone.curated_customer c
+    using my_project.landing_zone.landing_customer_stm l on 
+    c.customer_id  = l.customer_id 
+when matched then --If the customer ID match. That is, that customer already exists in the curated_customer table
+    update set 
+        c.salutation = l.salutation,
+        c.first_name = l.first_name,
+        c.last_name = l.last_name,
+        c.birth_day = l.birth_day,
+        c.birth_month = l.birth_month,
+        c.birth_year = l.birth_year,
+        c.birth_country = l.birth_country,
+        c.email_address = l.email_address
+
+when not matched then 
+    insert(
+        customer_id,
+        salutation,
+        first_name,
+        last_name,
+        birth_day,
+        birth_month,
+        birth_year,
+        birth_country,
+        email_address)
+    values (
+        customer_id,
+        salutation,
+        first_name,
+        last_name,
+        birth_day,
+        birth_month,
+        birth_year,
+        birth_country,
+        email_address
+        );
+
+create or replace task item_curated_tsk
+    warehouse = compute_wh
+    schedule = '3 minute'
+when 
+    system$stream_has_data('my_project.landing_zone.landing_item_stm')
+as
+    merge into my_project.curated_zone.curated_item c
+    using my_project.landing_zone.landing_item_stm l on 
+    c.item_id = l.item_id and
+    c.item_desc = l.item_desc and 
+    c.start_date = l.start_date
+when matched 
+    then update set 
+    c.end_date = l.end_date,
+    c.price = l.price,
+    c.item_class = l.item_class,
+    c.item_category = l.item_category
+when not matched 
+    then 
+    insert(
+        item_id,
+        item_desc,
+        start_date,
+        end_date,
+        price,
+        item_class,
+        item_category
+        )
+    values(
+        item_id,
+        item_desc,
+        start_date,
+        end_date,
+        price,
+        item_class,
+        item_category
+    );
+
+show tasks;
+
+alter task customer_curated_tsk resume;
+alter task item_curated_tsk resume;
+alter task order_curated_tsk resume;
+
+--Let's check the status using task history information table
+select * from table(information_schema.task_history())
+where name = 'ITEM_CURATED_TSK'
+ORDER BY SCHEDULED_TIME;
+
+select * from table(information_schema.task_history())
+where name = 'ORDER_CURATED_TSK'
+ORDER BY SCHEDULED_TIME;
+
+select * from table(information_schema.task_history())
+where name = 'CUSTOMER_CURATED_TSK'
+ORDER BY SCHEDULED_TIME;
+------------------------------------------------------------------------------------------------------------------
+--Part 6 Creating stream under Curated zone and tasts under Consumption zone to feed into the tables.
+------------------------------------------------------------------------------------------------------------------
+
+use schema curated_zone;
+
+create or replace stream curated_item_stm on table my_project.curated_zone.curated_item;
+
+create or replace stream curated_customer_stm on table my_project.curated_zone.curated_customer;
+
+create or replace stream curated_order_stm on table my_project.curated_zone.curated_order;
+
+show streams;
+
+--Changing the schema to create task in it.
+
+use schema consumption_zone;
+
+create or replace task item_consumption_tsk
+    warehouse = compute_wh
+    schedule = '4 minute'
+when 
+    system$stream_has_data('my_project.curated_zone.curated_item_stm')
+as
+    merge into my_project.consumption_zone.item_dim i
+    using my_project.curated_zone.curated_item_stm c on 
+    i.item_id = c.item_id and 
+    i.item_desc = c.item_desc and 
+    i.start_date = c.start_date
+    when matched 
+    and c.METADATA$ACTION = 'INSERT'
+    AND c.METADATA$ISUPDATE = 'TRUE'
+    then update set
+        i.end_date = c.end_date,
+        i.price = c.price,
+        i.item_class = c.item_class,
+        i.item_category = c.item_category
+    when matched 
+    and c.METADATA$ACTION = 'DELETE'
+    AND c.METADATA$ISUPDATE = 'FALSE'
+    then update set 
+    i.active_flag = 'N',
+    updated_timestamp = current_timestamp()
+when not matched 
+    and c.METADATA$ACTION = 'INSERT'
+    AND c.METADATA$ISUPDATE = 'FALSE'
+    then 
+    insert(
+        item_id,
+        item_desc,
+        start_date,
+        end_date,
+        price,
+        item_class,
+        item_category)
+    values(
+        item_id,
+        item_desc,
+        start_date,
+        end_date,
+        price,
+        item_class,
+        item_category
+    );
+
+create or replace task customer_consumption_tsk
+    warehouse = compute_wh
+    schedule = '5 minute'
+when 
+    system$stream_has_data('my_project.curated_zone.curated_customer_stm')
+as
+    merge into my_project.consumption_zone.customer_dim cd
+    using my_project.curated_zone.curated_customer_stm c on 
+    cd.customer_id = c.customer_id 
+    when matched 
+    and c.METADATA$ACTION = 'INSERT'
+    AND c.METADATA$ISUPDATE = 'TRUE'
+    then update set
+        cd.first_name = c.first_name,
+        cd.salutation = c.salutation,
+        cd.last_name = c.last_name,
+        cd.birth_day = c.birth_day,
+        cd.birth_month = c.birth_month,
+        cd.birth_year = c.birth_year,
+        cd.birth_country = c.birth_country,
+        cd.email_address = c.email_address
+    when matched 
+    and c.METADATA$ACTION = 'DELETE'
+    AND c.METADATA$ISUPDATE = 'FALSE'
+    then update set 
+    cd.active_flag = 'N',
+    cd.updated_timestamp = current_timestamp()
+when not matched 
+    and c.METADATA$ACTION = 'INSERT'
+    AND c.METADATA$ISUPDATE = 'FALSE'
+    then 
+    insert (
+        customer_id,
+        salutation,
+        first_name,
+        last_name,
+        birth_day,
+        birth_month,
+        birth_year,
+        birth_country,
+        email_address)
+    values( 
+        customer_id,
+        salutation,
+        first_name,
+        last_name,
+        birth_day,
+        birth_month,
+        birth_year,
+        birth_country,
+        email_address);
+
+
+
+create or replace task order_fact_tsk
+    warehouse = compute_wh
+    schedule = '6 minute'
+when 
+    system$stream_has_data('my_project.curated_zone.curated_order_stm')
+as
+insert overwrite into my_project.consumption_zone.order_fact (
+    order_date,
+    customer_dim_key,
+    item_dim_key,
+    order_count,
+    order_quantity,
+    sale_price ,
+    discount_amt,
+    coupon_amt,
+    net_paid ,
+    net_paid_tax,
+    net_profit 
+)
+select 
+    co.order_date,
+    cd.customer_dim_key,
+    id.item_dim_key,
+    count(1) as order_count,
+    sum(order_quantity),
+    sum(sale_price) ,
+    sum(discount_amt),
+    sum(coupon_amt),
+    sum(net_paid) ,
+    sum(net_paid_tax),
+    sum(net_profit)
+from my_project.curated_zone.curated_order co
+left join my_project.consumption_zone.customer_dim  cd on cd.customer_id = co.customer_id
+left join my_project.consumption_zone.item_dim id on id.item_id = co.item_id 
+group by 
+    co.order_date,
+    cd.customer_dim_key,
+    id.item_dim_key
+order by co.order_Date;
+
+show tasks;
+
+alter task CUSTOMER_CONSUMPTION_TSK resume;
+alter task order_fact_TSK resume;
+alter task item_CONSUMPTION_TSK resume;
+
+select * from table(information_schema.task_history())
+where name in ('CUSTOMER_CONSUMPTION_TSK', 'ORDER_FACT_TSK', 'ITEM_CONSUMPTION_TSK')
+ORDER BY SCHEDULED_TIME;
+
+
+------------------------------------------------------------------------------------------------------------------
+--PART 7: Importing a sample file and making sure it gets populated in the consumption zone tables.
+------------------------------------------------------------------------------------------------------------------
+use schema landing_zone;
+show streams;
+--STREAMS 
+SELECT * FROM LANDING_CUSTOMER_STM; --1 ROW
+SELECT * FROM LANDING_ITEM_STM; -- 1 ROW
+SELECT * FROM LANDING_ORDER_STM; --0 ROW
+
+--TABLE
+SELECT * FROM LANDING_CUSTOMER; --101
+SELECT * FROM LANDING_ITEM; --101
+SELECT * FROM LANDING_ORDER; --101
+
+
+
+--------------------------------------------
+use schema curated_zone;
+show STREAMS;
+
+SELECT * FROM CURATED_CUSTOMER_STM; --1 ROW
+SELECT * FROM CURATED_ORDER_STM; --1 ROW
+SELECT * FROM CURATED_ITEM_STM; --2 ROW (THIS IS AN UPDATE ONLY NOT AN INSERT. SO ONE ROW FOR DELETE AND ONE ROW FOR INSERT)
+
+SELECT * FROM CURATED_CUSTOMER; --101 ROW
+SELECT * FROM CURATED_ITEM; --100 ROW AS THIS IS ONLY UPDATING A RECORD AND NOT INSERTING ONE.
+SELECT * FROM CURATED_ORDER; --101
+SHOW TASKS;
+
+
+SELECT * FROM TABLE(INFORMATION_SCHEMA.TASK_HISTORY())
+WHERE NAME IN ('CUSTOMER_CURATED_TSK', 'ITEM_CURATED_TSK', 'ORDER_CURATED_TSK')
+ORDER BY SCHEDULED_TIME;
+----------------------------
+use schema consumption_zone;
+
+SELECT * FROM CUSTOMER_DIM; --101 ROWS
+SELECT * FROM ITEM_DIM; --100 ROWS
+SELECT * FROM ORDER_FACT; --521 ROWS
+show tables;
+
+show tasks;
+
+show streams;
+
+select * from table(information_schema.task_history())
+where name in ('CUSTOMER_CONSUMPTION_TSK', 'ITEM_CONSUMPTION_TSK', 'ORDER_FACT_TSK')
+ORDER BY SCHEDULED_TIME;

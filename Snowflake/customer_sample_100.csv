@@ -1,0 +1,101 @@
+customer_id,salutation,first_name,last_name,birth_day,birth_month,birth_year,birth_country,email_address
+1,Dr.,Courtney,Howard,19,6,1929,Singapore,angela22@yahoo.com
+2,Mrs.,Jordan,Gomez,25,8,1911,Lesotho,joehawkins@hotmail.com
+3,Mrs.,James,Wilson,20,2,1972,Mauritania,lisasmith@hotmail.com
+4,Dr.,Jeffrey,Fox,1,1,1932,Guinea-Bissau,rroberts@hotmail.com
+5,Mr.,Dr.,Cline,10,5,2016,Svalbard & Jan Mayen Islands,paige74@gmail.com
+6,Ms.,Caroline,Moore,8,2,1977,Russian Federation,millerjoshua@gmail.com
+7,Mrs.,Jordan,Jackson,12,2,1990,Faroe Islands,scott89@gmail.com
+8,Dr.,Catherine,Duncan,16,5,1958,Angola,erica00@yahoo.com
+9,Ms.,Paul,Perez,8,8,1936,Reunion,fhebert@gmail.com
+10,Dr.,Bryan,Cooper,22,5,1913,Togo,jameswinters@gmail.com
+11,Ms.,Robert,Obrien,27,10,1919,Vietnam,djones@yahoo.com
+12,Ms.,Daniel,Sutton,20,2,2014,Armenia,ryanramirez@hotmail.com
+13,Ms.,Michael,Simpson,9,11,1924,Chile,pkane@yahoo.com
+14,Mrs.,Julie,James,25,11,1927,Tunisia,kristen00@yahoo.com
+15,Ms.,David,Ramirez,25,8,1948,Niger,jamesshane@gmail.com
+16,Mrs.,Charles,Christian,12,1,1954,Bouvet Island (Bouvetoya),rhondabradley@gmail.com
+17,Mr.,Dawn,Robinson,2,10,2014,Hungary,smithbriana@gmail.com
+18,Dr.,Laura,Martinez,12,6,1969,Bulgaria,fletcheranthony@hotmail.com
+19,Mrs.,James,Rodriguez,4,8,1991,Mauritania,beth86@gmail.com
+20,Dr.,Anthony,Anderson,8,4,1917,Saudi Arabia,beverlyhaney@yahoo.com
+21,Ms.,Jessica,Gallegos,2,11,1958,Zimbabwe,gwilkerson@hotmail.com
+22,Mr.,Edwin,Grant,16,10,1960,Solomon Islands,taylorbrown@gmail.com
+23,Ms.,Jerry,Chen,7,4,1922,Christmas Island,melissaholland@gmail.com
+24,Dr.,Carla,Kelly,15,5,1994,Guam,jaimemoore@yahoo.com
+25,Mr.,Sabrina,Smith,28,2,1970,Lithuania,jenkinsjohn@yahoo.com
+26,Dr.,Cory,Suarez,29,3,1923,Mexico,hmason@yahoo.com
+27,Dr.,Victoria,Torres,6,12,1943,Isle of Man,jruiz@gmail.com
+28,Mr.,Cristina,Orr,31,3,1940,Panama,katherinelowe@hotmail.com
+29,Mrs.,Michael,Jones,28,9,2016,Kyrgyz Republic,calvin21@hotmail.com
+30,Ms.,Sarah,Hickman,1,10,1970,Guatemala,alfred11@hotmail.com
+31,Mr.,Brittany,Hayes,15,9,1997,Montserrat,hbell@hotmail.com
+32,Dr.,Tammy,Smith,12,9,1925,Guadeloupe,melissa35@gmail.com
+33,Mrs.,Anthony,MD,7,6,1986,Eritrea,suehill@yahoo.com
+34,Mrs.,Andrew,Hernandez,24,8,1987,Saint Barthelemy,ogreen@gmail.com
+35,Mr.,Michele,Skinner,16,7,2017,Latvia,tpatton@hotmail.com
+36,Mrs.,Maria,Thompson,18,10,1981,Singapore,jacobrose@yahoo.com
+37,Mr.,Jennifer,Allen,2,3,2015,Cayman Islands,jennifer91@hotmail.com
+38,Mr.,Darren,Castillo,12,7,1988,Iran,rsuarez@hotmail.com
+39,Dr.,Miranda,DVM,21,1,1960,Netherlands,coltonweaver@yahoo.com
+40,Mrs.,Eric,Kim,23,2,1952,Argentina,gboyer@gmail.com
+41,Mr.,John,Montoya,6,7,2002,Palestinian Territory,higginsbryce@gmail.com
+42,Mr.,Kimberly,Arnold,11,10,1919,Uzbekistan,olsonbrandon@gmail.com
+43,Mr.,Anne,Jones,7,12,1914,Uruguay,brittanysingh@hotmail.com
+44,Mrs.,Dennis,Hawkins,2,7,1949,Armenia,amandaperez@yahoo.com
+45,Dr.,Jared,DDS,1,11,1913,Papua New Guinea,mcclainrobert@hotmail.com
+46,Mr.,Mrs.,Brown,13,7,2014,Russian Federation,tammymurphy@yahoo.com
+47,Dr.,Amanda,Fleming,15,9,1911,Macao,staceylewis@gmail.com
+48,Ms.,Matthew,Bray,1,8,1972,Tunisia,kaitlynwelch@hotmail.com
+49,Dr.,Erica,Hall,26,9,1958,Mauritius,mathisholly@yahoo.com
+50,Mr.,Taylor,Fernandez,20,8,1963,Guadeloupe,jonessarah@yahoo.com
+51,Dr.,Vincent,Miller,10,9,1953,Afghanistan,qgutierrez@hotmail.com
+52,Dr.,Alexander,Smith,8,8,1975,Netherlands,kathryncampos@gmail.com
+53,Mrs.,Scott,Jones,14,12,2012,Timor-Leste,hphillips@gmail.com
+54,Mr.,Ashley,Buchanan,21,8,2002,Tunisia,burnsheather@yahoo.com
+55,Dr.,Edgar,Olson,24,7,1995,Pakistan,martinezchristian@gmail.com
+56,Mrs.,Regina,MD,14,1,1940,El Salvador,aspencer@hotmail.com
+57,Mr.,William,Woods,24,12,2002,Sri Lanka,izimmerman@yahoo.com
+58,Ms.,Fred,Patrick,4,2,2010,Oman,clarence62@yahoo.com
+59,Mrs.,Karen,Hayes,16,1,1974,Gabon,beckerwilliam@gmail.com
+60,Ms.,Laura,Lara,4,1,1960,Cyprus,karen23@gmail.com
+61,Dr.,Sherry,Patterson,19,4,1955,Kiribati,deanbarbara@gmail.com
+62,Mr.,Joseph,Richard,26,10,1942,Andorra,olarson@hotmail.com
+63,Dr.,Christine,Jones,14,12,1925,Kenya,angelavelasquez@gmail.com
+64,Mrs.,Desiree,Allen,9,11,2018,Bahrain,lisawells@gmail.com
+65,Mr.,Nancy,Williams,13,12,1912,Guam,williamskyle@gmail.com
+66,Ms.,Karen,Medina,16,12,1995,Czech Republic,jodi15@hotmail.com
+67,Ms.,Deborah,Johnson,23,9,1988,Cayman Islands,michellehernandez@gmail.com
+68,Dr.,Marissa,Mcneil,13,3,2015,Qatar,stephaniewilson@hotmail.com
+69,Mrs.,Jennifer,Taylor,24,2,2003,Monaco,patricia00@hotmail.com
+70,Mrs.,Tracy,Franklin,29,6,1918,Samoa,richard91@hotmail.com
+71,Dr.,Elizabeth,Neal,4,1,1915,Slovakia (Slovak Republic),kaitlynjones@yahoo.com
+72,Dr.,William,Brooks,13,2,1953,Austria,laurabyrd@hotmail.com
+73,Mrs.,Wayne,Neal,10,9,1925,French Southern Territories,shannon48@gmail.com
+74,Mr.,Lorraine,Hammond,13,10,2000,Cayman Islands,xhoward@hotmail.com
+75,Mr.,David,Mathews,6,6,1962,Guinea,corey24@yahoo.com
+76,Mr.,Nicole,Douglas,22,8,2024,Sierra Leone,theresapowell@yahoo.com
+77,Mrs.,Carlos,Clark,27,4,1961,Dominican Republic,jacoblee@hotmail.com
+78,Ms.,Amy,Wilkins,9,11,1980,Hong Kong,michellejordan@hotmail.com
+79,Mr.,Steve,Harvey,9,5,1995,Thailand,kentchristine@yahoo.com
+80,Mr.,Craig,MD,12,2,2016,Lebanon,scott70@gmail.com
+81,Ms.,Regina,Blankenship,13,9,2016,Afghanistan,tammy59@hotmail.com
+82,Ms.,Gabriel,Meza,19,6,1999,China,jlambert@gmail.com
+83,Mrs.,Nicholas,Gutierrez,21,8,1948,Micronesia,jeffrey71@gmail.com
+84,Mrs.,Kathryn,Thomas,13,7,1990,Macedonia,robert51@yahoo.com
+85,Dr.,Thomas,Garcia,14,11,1998,Netherlands Antilles,heatherle@yahoo.com
+86,Ms.,John,Barajas,16,9,2021,Austria,timothycastro@gmail.com
+87,Dr.,April,Garza,19,11,1962,Cape Verde,shess@gmail.com
+88,Ms.,Sara,Baker,30,1,1992,Papua New Guinea,martinezpaul@hotmail.com
+89,Dr.,David,Mccarty,29,11,1974,Madagascar,justinjones@gmail.com
+90,Mr.,Eric,Wilson,12,8,1927,Jamaica,kimberly88@yahoo.com
+91,Ms.,Mark,George,12,6,1925,Kyrgyz Republic,ysmith@hotmail.com
+92,Ms.,Jennifer,Bennett,23,1,1989,Mauritius,dfrazier@yahoo.com
+93,Dr.,Alexandra,Terry,6,3,1996,Mauritania,vosborne@gmail.com
+94,Mr.,Adam,Bowen,21,8,1967,Norfolk Island,emilypark@gmail.com
+95,Dr.,Monica,White,8,5,2013,Denmark,bradleydavis@gmail.com
+96,Ms.,Daniel,Bryant,26,4,1970,Mozambique,michaelsanders@gmail.com
+97,Ms.,Richard,Davis,21,5,2007,China,ubrooks@yahoo.com
+98,Ms.,Michelle,Estes,22,11,1978,Norfolk Island,fordjulia@hotmail.com
+99,Mrs.,William,Gentry,11,9,1910,Austria,gonzalesjeffrey@yahoo.com
+100,Mr.,Bradley,Ross,11,2,1979,Togo,kwilson@gmail.com
