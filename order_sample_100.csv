@@ -1,0 +1,101 @@
+order_date,order_time,item_id,item_desc,customer_id,salutation,first_name,last_name,store_id,store_name,order_quantity,sale_price,discount_amt,coupon_amt,net_paid,net_paid_tax,net_profit
+10/15/24,7:41:47,102,Office Chair,1,Mrs.,Kevin,Dalton,5,Downtown Store,2,501.5,73.51,31.4,501.5,51.56,41.12
+4/27/25,5:33:01,107,Keyboard,2,Mrs.,Jessica,Wright,4,Airport Kiosk,1,75,4.63,7.16,75,8.22,14.26
+4/5/25,11:32:11,108,Mouse,3,Mrs.,Christopher,Carey,1,Airport Kiosk,2,80,11.21,1.07,80,8.8,13.79
+12/10/24,20:12:38,102,Office Chair,4,Dr.,Michael,Garrett,8,Suburb Shop,5,1253.75,24.99,21.64,1253.75,156.93,155.56
+2/14/25,18:47:02,102,Office Chair,5,Dr.,Sarah,Avery,5,Downtown Store,2,501.5,19.31,7.6,501.5,61.7,103.38
+7/6/25,7:48:54,102,Office Chair,6,Ms.,Collin,Flores,8,Downtown Store,4,1003,69.76,98.15,1003,108.56,190.65
+8/18/25,20:17:27,103,Smartphone,7,Ms.,Benjamin,Deleon,9,Downtown Store,5,4499.95,435.37,53.11,4499.95,521.49,904.13
+9/28/24,22:05:56,110,Printer,8,Ms.,Rachael,Villarreal,10,Downtown Store,4,722,24.67,40.37,722,85.4,115.98
+7/30/25,0:43:42,105,Headphones,9,Ms.,Richard,Wilson,5,Mall Outlet,1,150,25.58,4.39,150,15.6,24.43
+6/10/25,3:02:05,107,Keyboard,10,Dr.,Jennifer,Bond,8,Downtown Store,4,300,39.92,0.47,300,33.75,74.35
+9/23/24,21:31:26,108,Mouse,11,Mr.,Pamela,Thompson,6,Downtown Store,2,80,8.52,4.26,80,8.74,20.04
+10/14/24,18:37:48,110,Printer,12,Dr.,Scott,Mills,6,Downtown Store,4,722,114.78,54,722,71.92,104.75
+7/8/25,17:07:02,105,Headphones,13,Ms.,Beth,Swanson,3,Suburb Shop,3,450,16.39,14.39,450,54.5,71.41
+12/10/24,22:00:53,102,Office Chair,14,Dr.,Matthew,Doyle,1,Airport Kiosk,4,1003,11.94,91.35,1003,116.96,210.94
+11/26/24,9:03:03,105,Headphones,15,Dr.,Brandy,Miller,5,City Center,4,600,29.34,16.88,600,71.99,77.5
+1/24/25,14:15:58,107,Keyboard,16,Mrs.,John,Reyes,4,Suburb Shop,4,300,56.11,7.42,300,30.74,67.33
+6/12/25,8:39:09,108,Mouse,17,Mr.,Christy,Stone,6,Downtown Store,2,80,0.93,2.07,80,10.01,9.45
+12/24/24,6:37:06,108,Mouse,18,Dr.,Joel,Mcguire,7,Airport Kiosk,5,200,27.28,4.04,200,21.93,20.96
+1/14/25,8:40:45,108,Mouse,19,Mr.,Jack,Powell,2,City Center,3,120,15.77,0.53,120,13.48,23.38
+6/13/25,4:56:34,105,Headphones,20,Dr.,Charles,Price,9,Airport Kiosk,5,750,46.41,20.19,750,88.84,141.17
+1/7/25,10:30:00,106,Tablet,21,Mrs.,Michael,Espinoza,1,Suburb Shop,1,450.25,41.27,17.28,450.25,50.92,58.85
+7/4/25,19:25:25,108,Mouse,22,Mrs.,Daniel,Thomas,6,Downtown Store,4,160,27.35,6.4,160,16.41,34.57
+9/27/24,18:05:37,104,Desk Lamp,23,Mrs.,Jordan,James,6,Mall Outlet,2,90,9.3,8.29,90,9.41,7.87
+5/8/25,12:10:40,104,Desk Lamp,24,Ms.,Aaron,Waller,8,Downtown Store,3,135,15.31,7.78,135,14.55,26.38
+3/26/25,18:58:24,101,Laptop,25,Mrs.,Richard,Allen,6,Mall Outlet,3,3601.5,284.05,293.96,3601.5,393.05,782.61
+4/28/25,0:52:25,101,Laptop,26,Mrs.,Casey,Bowen,4,Suburb Shop,3,3601.5,589.59,66.38,3601.5,382.92,487.26
+6/9/25,5:13:49,109,Monitor,27,Ms.,Barbara,Munoz,3,Downtown Store,1,300,11.08,16.05,300,35.47,81.7
+9/17/25,11:16:44,110,Printer,28,Mr.,Melissa,Kelley,10,Airport Kiosk,5,902.5,157.95,67.89,902.5,87.97,177.59
+1/21/25,18:11:37,109,Monitor,29,Dr.,Bryan,Francis,8,Airport Kiosk,1,300,56.54,10.04,300,30.34,51.92
+8/12/25,7:03:57,103,Smartphone,30,Mr.,Ashley,Ortiz,3,City Center,1,899.99,147.5,59.76,899.99,90.05,159.48
+1/31/25,4:26:06,108,Mouse,31,Ms.,Ian,Williamson,8,Mall Outlet,3,120,3.85,9.3,120,13.89,26.46
+8/14/25,12:56:54,109,Monitor,32,Mrs.,Danielle,Butler,9,Mall Outlet,3,900,40.05,89.67,900,100.14,221.61
+12/31/24,21:57:33,105,Headphones,33,Ms.,Nathan,Cardenas,10,Downtown Store,3,450,0.84,41.11,450,53.05,113.89
+4/7/25,16:09:59,102,Office Chair,34,Dr.,Jacqueline,Thompson,6,City Center,4,1003,21.63,9.86,1003,126.3,195.15
+9/10/25,9:30:57,107,Keyboard,35,Mrs.,Kimberly,Smith,9,Downtown Store,2,150,25.44,12.56,150,14.56,19.1
+7/5/25,3:19:08,108,Mouse,36,Dr.,Charles,Arnold,2,Airport Kiosk,1,40,1.39,3.33,40,4.59,6.14
+12/30/24,3:23:58,107,Keyboard,37,Ms.,Nathaniel,Howard,5,City Center,1,75,11.17,4.77,75,7.68,13.26
+9/11/25,1:36:26,106,Tablet,38,Ms.,Nicholas,Quinn,1,Mall Outlet,2,900.5,123.84,8.1,900.5,99.91,92.82
+10/25/24,22:10:32,101,Laptop,39,Ms.,Ronald,Owens,4,Suburb Shop,1,1200.5,75.82,1.11,1200.5,146.06,202.6
+5/27/25,4:01:11,108,Mouse,40,Ms.,Lisa,Lutz,6,Suburb Shop,4,160,7.55,5.74,160,19.07,15.78
+7/9/25,22:52:12,106,Tablet,41,Mrs.,Katherine,Cooper,9,Mall Outlet,5,2251.25,228.6,74.12,2251.25,253.31,311.85
+4/11/25,23:04:01,102,Office Chair,42,Mrs.,Desiree,Buchanan,5,Airport Kiosk,2,501.5,84.38,15.22,501.5,52.25,114.27
+2/18/25,1:39:35,101,Laptop,43,Dr.,Nicole,Burns,1,Airport Kiosk,1,1200.5,101.6,116.12,1200.5,127.76,200.09
+10/11/24,10:18:26,107,Keyboard,44,Dr.,Jacob,Walker,8,Airport Kiosk,3,225,22.83,2,225,26.02,36.95
+6/23/25,19:36:06,102,Office Chair,45,Mr.,Victoria,Weaver,7,Downtown Store,5,1253.75,211.89,49.06,1253.75,129.06,232.23
+12/30/24,18:11:01,103,Smartphone,46,Dr.,Michael,Brown,3,Downtown Store,2,1799.98,107.34,133.74,1799.98,202.66,235.56
+4/4/25,16:24:18,101,Laptop,47,Mrs.,Brenda,Wright,4,City Center,4,4802,123.32,195.82,4802,582.77,1193.48
+2/17/25,0:56:39,108,Mouse,48,Ms.,Nicole,Aguilar,5,Suburb Shop,3,120,1.32,8.88,120,14.27,24.49
+11/5/24,16:32:03,101,Laptop,49,Ms.,Michelle,Ball,1,Mall Outlet,3,3601.5,107.12,240.39,3601.5,423.02,339.03
+2/11/25,0:27:57,106,Tablet,50,Ms.,Zachary,Mckinney,6,Suburb Shop,5,2251.25,136.05,115.84,2251.25,259.92,423.64
+2/11/25,16:09:45,110,Printer,51,Ms.,Miguel,Zimmerman,8,City Center,1,180.5,5.77,3.67,180.5,22.24,48.79
+8/29/25,15:50:09,107,Keyboard,52,Mrs.,Jeffrey,Jones,4,Mall Outlet,2,150,26.94,8.36,150,14.91,20.86
+8/1/25,8:05:19,107,Keyboard,53,Mr.,Norma,Castillo,8,Downtown Store,5,375,72.05,23.02,375,36.39,65.81
+2/27/25,1:35:29,109,Monitor,54,Mrs.,Robin,York,8,Suburb Shop,5,1500,55.03,87.43,1500,176.48,361.83
+9/20/24,4:19:01,107,Keyboard,55,Ms.,Todd,Lopez,10,Airport Kiosk,2,150,7.31,14.18,150,16.71,13.34
+2/17/25,4:43:47,109,Monitor,56,Mrs.,Ian,Adams,7,Airport Kiosk,3,900,114.12,40.5,900,96.9,175.77
+9/9/25,10:34:06,104,Desk Lamp,57,Ms.,Jeremy,Marshall,1,Mall Outlet,1,45,4.94,3.65,45,4.73,10.71
+6/12/25,9:29:04,103,Smartphone,58,Mrs.,Ashley,Taylor,10,Suburb Shop,3,2699.97,354.63,46,2699.97,298.91,662.65
+6/2/25,13:20:15,101,Laptop,59,Dr.,Stephen,Gentry,8,City Center,1,1200.5,163.42,109.06,1200.5,120.64,156.97
+6/4/25,2:58:55,102,Office Chair,60,Dr.,Julie,Kim,3,Airport Kiosk,2,501.5,61.34,16.76,501.5,55.04,82.66
+8/27/25,20:59:55,108,Mouse,61,Mr.,Mark,Meyer,3,Mall Outlet,2,80,11.67,4.08,80,8.35,13.99
+11/5/24,1:02:41,105,Headphones,62,Mrs.,James,Krueger,5,Mall Outlet,3,450,87.14,1.57,450,46.97,69.2
+11/18/24,23:11:06,104,Desk Lamp,63,Dr.,Rachael,Morris,3,Suburb Shop,1,45,2.02,1.65,45,5.37,4.84
+4/1/25,5:49:02,102,Office Chair,64,Dr.,Beth,Watson,4,Suburb Shop,4,1003,16.11,42.29,1003,122.8,280.98
+10/2/24,8:02:36,105,Headphones,65,Dr.,Jessica,Cox,2,Downtown Store,3,450,20.47,18.53,450,53.43,105.04
+6/17/25,3:36:08,105,Headphones,66,Ms.,David,Elliott,9,Suburb Shop,5,750,1.59,52.48,750,90.47,140.99
+5/15/25,12:46:35,105,Headphones,67,Mr.,Charlene,Gomez,7,City Center,3,450,29.68,7.62,450,53.65,45.52
+8/5/25,6:25:52,109,Monitor,68,Mr.,Margaret,Farmer,3,Airport Kiosk,2,600,58.05,39.27,600,65.35,107.01
+6/21/25,14:40:42,104,Desk Lamp,69,Mr.,Amy,Hoffman,6,Downtown Store,1,45,4.01,2.4,45,5.02,5.36
+6/11/25,5:07:46,101,Laptop,70,Ms.,David,Hansen,4,Downtown Store,2,2401,48.58,128.55,2401,289.1,371.33
+6/2/25,4:42:34,102,Office Chair,71,Dr.,Benjamin,Madden,6,Suburb Shop,1,250.75,45.53,14.79,250.75,24.76,30.41
+9/16/25,8:05:23,107,Keyboard,72,Mr.,Linda,Griffin,8,Downtown Store,1,75,8.21,7.3,75,7.73,11.41
+5/7/25,21:18:08,104,Desk Lamp,73,Mrs.,Tracy,Clark,10,City Center,5,225,15.71,6.04,225,26.42,43.23
+1/13/25,23:00:03,108,Mouse,74,Dr.,Natasha,Banks,6,City Center,4,160,19.04,9.76,160,17.06,36.46
+3/15/25,21:47:01,108,Mouse,75,Mr.,Dennis,Collins,2,Suburb Shop,1,40,5.46,1.59,40,4.28,7.32
+2/16/25,16:14:18,106,Tablet,76,Mr.,Julie,Williams,3,Downtown Store,3,1350.75,145.34,69.56,1350.75,147.66,193.38
+8/6/25,8:08:33,101,Laptop,77,Ms.,Eric,Page,5,Mall Outlet,1,1200.5,174.21,81.98,1200.5,122.76,138.22
+10/26/24,3:21:04,101,Laptop,78,Dr.,Warren,Smith,1,Airport Kiosk,5,6002.5,263.29,331.33,6002.5,703.02,1262.37
+3/4/25,15:31:48,105,Headphones,79,Dr.,Alan,Romero,10,City Center,2,300,10.65,1.97,300,37.36,70.8
+12/26/24,12:41:02,107,Keyboard,80,Dr.,Michelle,Bates,9,Airport Kiosk,3,225,12.73,19.07,225,25.12,38.26
+9/28/24,15:06:05,102,Office Chair,81,Mrs.,Ann,Marshall,4,Downtown Store,1,250.75,0.2,13.54,250.75,30.81,40.24
+11/26/24,19:14:43,104,Desk Lamp,82,Mrs.,Thomas,Sparks,5,Airport Kiosk,5,225,35.91,1.55,225,24.38,35.64
+3/29/25,22:54:01,105,Headphones,83,Mrs.,James,Moore,5,Mall Outlet,4,600,4.36,8.79,600,76.29,131.45
+9/12/25,13:54:56,106,Tablet,84,Ms.,Shannon,Hernandez,3,Suburb Shop,2,900.5,159.43,59.78,900.5,88.57,181.53
+4/7/25,4:24:07,101,Laptop,85,Mr.,Christopher,Wilson,7,Mall Outlet,4,4802,951.65,8.87,4802,499.39,852.44
+3/18/25,20:06:18,101,Laptop,86,Mrs.,Megan,Powers,10,City Center,3,3601.5,277.9,262.95,3601.5,397.88,317.72
+3/3/25,14:02:22,101,Laptop,87,Dr.,Miranda,Coleman,8,City Center,5,6002.5,540.24,47.1,6002.5,703.97,1448.66
+10/6/24,21:09:26,105,Headphones,88,Mr.,Patricia,Fitzpatrick,8,City Center,5,750,0.97,42.6,750,91.84,70.66
+5/8/25,0:08:15,109,Monitor,89,Ms.,Luke,Moses,8,City Center,2,600,73.35,23.93,600,65.35,84.28
+4/16/25,3:38:37,102,Office Chair,90,Dr.,Leonard,Phillips,9,Downtown Store,1,250.75,5.78,24.03,250.75,28.72,36.36
+4/28/25,15:54:59,108,Mouse,91,Mrs.,Willie,Flynn,6,Suburb Shop,3,120,6.95,11.77,120,13.17,17.82
+2/8/25,6:25:09,109,Monitor,92,Mr.,Joanne,Osborne,1,Downtown Store,1,300,13.64,7.8,300,36.21,32.38
+2/7/25,21:23:13,109,Monitor,93,Ms.,Wyatt,Sullivan,2,City Center,5,1500,50.41,18,1500,186.11,168.78
+12/24/24,14:06:19,101,Laptop,94,Ms.,Mark,Schwartz,2,Airport Kiosk,4,4802,960.15,27.7,4802,495.84,959.74
+8/26/25,10:50:30,109,Monitor,95,Mr.,Ryan,Barnett,8,Mall Outlet,5,1500,100.96,63.89,1500,173.57,284.79
+5/22/25,1:13:43,105,Headphones,96,Ms.,Sarah,Dominguez,9,City Center,1,150,27.02,12.98,150,14.3,18.99
+9/20/25,20:34:57,105,Headphones,97,Mr.,Patty,Nguyen,2,Airport Kiosk,1,150,20.22,14.83,150,14.94,15.9
+8/13/25,19:39:42,107,Keyboard,98,Dr.,Shelly,Rose,5,Mall Outlet,3,225,31.8,21.6,225,22.31,49.7
+6/17/25,13:29:58,106,Tablet,99,Dr.,Nicole,Peters,5,Mall Outlet,3,1350.75,233.7,62.71,1350.75,137.06,149.71
+6/1/25,0:06:45,107,Keyboard,100,Ms.,David,Rodriguez,8,City Center,2,150,29.71,7.87,150,14.61,21.26
