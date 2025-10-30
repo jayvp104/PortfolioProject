@@ -1,7 +1,6 @@
 /*--------------------------------------------------------------------------------------------
                                         Raw Schema
 --------------------------------------------------------------------------------------------*/
-
 use role sysadmin;
 create or replace database ags_game_audience;
 create or replace schema ags_game_audience.raw;
@@ -9,8 +8,6 @@ create or replace schema ags_game_audience.enhanced;
 
 use database ags_game_audience;
 use schema raw;
-
-
 
 ----------------------------------
 --Creating an integration to connect S3 bucket with snowflake
@@ -28,7 +25,6 @@ GRANT EXECUTE TASK ON ACCOUNT TO ROLE SYSADMIN;
 --DESC INTEGRATION new_int;
 --show integrations;
 
-
  --------------------------------------------------------
 use role sysadmin;
 
@@ -37,7 +33,6 @@ create or replace file format pl_json_ff
 type = 'json'
 strip_outer_array = true;
 
-
 --Creating external stage
 create or replace stage uni_kishore_pipeline
 url = 's3://uni-kishore-pipeline'
@@ -45,7 +40,6 @@ directory = (enable = true);
 
 --Making sure there is data in external stage.
 -- select $1 from @ags_game_audience.raw.uni_kishore_pipeline (file_format => pl_json_ff);
-
 
 --Creating Raw Table and loading the initial data
 create or replace table ags_game_audience.raw.ed_pipeline_logs
@@ -102,7 +96,6 @@ values
 -- select tod_name, listagg(hour, ',') from time_of_day_lu
 -- group by tod_name;
 
-
 --Creating a pipeline that creates a table and copies data from external stage
 create or replace pipe pipe_get_new_files
     auto_ingest = true 
@@ -127,13 +120,11 @@ create or replace pipe pipe_get_new_files
 --Check the files in the external stage
 --list @ags_game_audience.raw.uni_kishore_pipeline;
 
-
 --select log_file_name from ags_game_audience.raw.ed_pipeline_logs;
 --select * from ags_game_audience.raw.ed_pipeline_logs WHERE LOG_FILE_NAME = 'logs_401_410_0_0_0.json';
 
 --Check the pipeline is Running
 --select system$pipe_status('pipe_get_new_files');
-
 
 /*--------------------------------------------------------------------------------------------
                                         Enhanced Schema
@@ -144,7 +135,6 @@ use schema enhanced;
 --creating stream to capture delta data from ed_pipeline_logs
 create or replace stream ags_game_audience.enhanced.ed_cdc_stream
 on table ags_game_audience.raw.ed_pipeline_logs;
-
 
 --Check stream got created
 --show streams;
@@ -210,9 +200,6 @@ order by scheduled_time desc;
 --execute task load_logs_enhanced; (Used to execute task manually)
 --truncate table ags_game_audience.enhanced.pl_logs_enhanced;
 
-
-
-
 /*--------------------------------------------------------------------------------------------
                                         Testing Zone
 --------------------------------------------------------------------------------------------*/
@@ -222,7 +209,6 @@ with row_count as
 (select count($1) row_count from @ags_game_audience.raw.uni_kishore_pipeline)
 
 --step 2: Checking if the files are copied into the table from stage
-
 select  'External Stage' object, 'Total' status, (select row_count::varchar(25) from row_count) row_count
 
 union all
@@ -235,7 +221,6 @@ select
     end as Status, 
     count(a.*) row_count
 from ags_game_audience.raw.ed_pipeline_logs a
-
 
 union all
 --step 3: Checking if the final Enhanced log table shows the right count of rows
@@ -250,4 +235,5 @@ select
 from ags_game_audience.enhanced.pl_logs_enhanced b;
 
 --Only last tally step will have an output. Successful in status for 2 and 3 means all rows got added.
+
 
