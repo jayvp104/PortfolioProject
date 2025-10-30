@@ -1,0 +1,253 @@
+/*--------------------------------------------------------------------------------------------
+                                        Raw Schema
+--------------------------------------------------------------------------------------------*/
+
+use role sysadmin;
+create or replace database ags_game_audience;
+create or replace schema ags_game_audience.raw;
+create or replace schema ags_game_audience.enhanced;
+
+use database ags_game_audience;
+use schema raw;
+
+
+
+----------------------------------
+--Creating an integration to connect S3 bucket with snowflake
+use role accountadmin;
+
+CREATE or replace STORAGE INTEGRATION new_int
+  TYPE = EXTERNAL_STAGE
+  STORAGE_PROVIDER = 'S3'
+  ENABLED = TRUE
+  STORAGE_AWS_ROLE_ARN = 'arn:aws:iam::778511511373:role/snowflake_new_role'
+  STORAGE_ALLOWED_LOCATIONS = ('*');
+
+GRANT EXECUTE TASK ON ACCOUNT TO ROLE SYSADMIN;
+--Check details on the integration
+--DESC INTEGRATION new_int;
+--show integrations;
+
+
+ --------------------------------------------------------
+use role sysadmin;
+
+--Creating file format for JSON file
+create or replace file format pl_json_ff
+type = 'json'
+strip_outer_array = true;
+
+
+--Creating external stage
+create or replace stage uni_kishore_pipeline
+url = 's3://uni-kishore-pipeline'
+directory = (enable = true);
+
+--Making sure there is data in external stage.
+-- select $1 from @ags_game_audience.raw.uni_kishore_pipeline (file_format => pl_json_ff);
+
+
+--Creating Raw Table and loading the initial data
+create or replace table ags_game_audience.raw.ed_pipeline_logs
+    as
+    select 
+            metadata$filename as log_file_name,
+            metadata$file_row_number as log_file_row_id,
+            current_timestamp(0) as load_ltz,
+            $1:user_event::varchar(25) as game_event_name,
+            $1:user_login::varchar(100) as gamer_name,
+            $1:ip_address::varchar(100) ip_address,
+            $1:datetime_iso8601::timestampntz as game_event_utc,
+            hour($1:datetime_iso8601::timestampntz) hour , 
+            dayname($1:datetime_iso8601::timestampntz) dow_name,
+            from @ags_game_audience.raw.uni_kishore_pipeline
+            (file_format => pl_json_ff
+        );
+
+--Creating another look up table to get time of day data
+create or replace table ags_game_audience.raw.pl_time_of_day_lu(
+    hour number, 
+    tod_name varchar(25)
+    );
+
+--Inserting values in look up table
+insert into ags_game_audience.raw.pl_time_of_day_lu
+values
+    (6,'Early morning'),
+    (7,'Early morning'),
+    (8,'Early morning'),
+    (9,'Mid-morning'),
+    (10,'Mid-morning'),
+    (11,'Late morning'),
+    (12,'Late morning'),
+    (13,'Early afternoon'),
+    (14,'Early afternoon'),
+    (15,'Mid-afternoon'),
+    (16,'Mid-afternoon'),
+    (17,'Late afternoon'),
+    (18,'Late afternoon'),
+    (19,'Early evening'),
+    (20,'Early evening'),
+    (21,'Late evening'),
+    (22,'Late evening'),
+    (23,'Late evening'),
+    (0,'Late at night'),
+    (1,'Late at night'),
+    (2,'Late at night'),
+    (3,'Toward morning'),
+    (4,'Toward morning'),
+    (5,'Toward morning');
+
+--Check data got loaded
+-- select tod_name, listagg(hour, ',') from time_of_day_lu
+-- group by tod_name;
+
+
+--Creating a pipeline that creates a table and copies data from external stage
+create or replace pipe pipe_get_new_files
+    auto_ingest = true 
+    aws_sns_topic='arn:aws:sns:us-west-2:321463406630:dngw_topic'
+    as
+    copy into ed_pipeline_logs
+    from
+        (select 
+            metadata$filename as log_file_name,
+            metadata$file_row_number as log_file_row_id,
+            current_timestamp(0) as load_ltz,
+            $1:user_event::varchar(25) as game_event_name,
+            $1:user_login::varchar(100) as gamer_name,
+            $1:ip_address::varchar(100) ip_address,
+            $1:datetime_iso8601::timestampntz as game_event_utc,
+            hour($1:datetime_iso8601::timestampntz) hour , 
+            dayname($1:datetime_iso8601::timestampntz) dow_name,
+            from @ags_game_audience.raw.uni_kishore_pipeline
+        )
+        file_format = (format_name = pl_json_ff);
+
+--Check the files in the external stage
+--list @ags_game_audience.raw.uni_kishore_pipeline;
+
+
+--select log_file_name from ags_game_audience.raw.ed_pipeline_logs;
+--select * from ags_game_audience.raw.ed_pipeline_logs WHERE LOG_FILE_NAME = 'logs_401_410_0_0_0.json';
+
+--Check the pipeline is Running
+--select system$pipe_status('pipe_get_new_files');
+
+
+/*--------------------------------------------------------------------------------------------
+                                        Enhanced Schema
+--------------------------------------------------------------------------------------------*/
+use database ags_game_audience;
+use schema enhanced;
+
+--creating stream to capture delta data from ed_pipeline_logs
+create or replace stream ags_game_audience.enhanced.ed_cdc_stream
+on table ags_game_audience.raw.ed_pipeline_logs;
+
+
+--Check stream got created
+--show streams;
+--select system$stream_has_data('ed_cdc_stream');
+
+--creating final table and loading the initial data
+create or replace table ags_game_audience.enhanced.pl_logs_enhanced
+as
+(select  
+        gamer_name, 
+        game_event_name, 
+        game_event_utc game_event_ltz, 
+        ip_address, 
+        v.hour, 
+        dow_name,
+        t.tod_name
+    from ags_game_audience.raw.ed_pipeline_logs v 
+    join ags_game_audience.raw.pl_time_of_day_lu t 
+    on t.hour = v.hour);
+    
+--Check initial data got loaded in final table 
+--select * from ags_game_audience.enhanced.pl_logs_enhanced;
+
+-- Creating task to load the final table 
+create or replace task ags_game_audience.enhanced.load_logs_enhanced
+    user_task_managed_initial_warehouse_size = 'xsmall' 
+    schedule = '5 minute'
+when system$stream_has_data('ed_cdc_stream')
+    
+    as
+merge into ags_game_audience.enhanced.pl_logs_enhanced as a
+    using
+    (select  
+        gamer_name, 
+        game_event_name, 
+        game_event_utc game_event_ltz, 
+        ip_address, 
+        v.hour, 
+        dow_name,
+        t.tod_name
+    from ags_game_audience.raw.ed_cdc_stream v 
+    join ags_game_audience.raw.pl_time_of_day_lu t 
+    on t.hour = v.hour) b 
+    on a.gamer_name = b.gamer_name and a.game_event_name = b.game_event_name and a.game_event_ltz =                     b.game_event_ltz
+    when not matched then 
+     insert (GAMER_NAME, GAME_EVENT_NAME, GAME_EVENT_ltz, ip_address,  HOUR, DOW_NAME, TOD_NAME)                        values (GAMER_NAME, GAME_EVENT_NAME, GAME_EVENT_ltz, ip_address, HOUR, DOW_NAME, TOD_NAME);
+
+-- Resuming or shutting off the task once testing is successful
+alter task ags_game_audience.enhanced.load_logs_enhanced resume;
+--alter task ags_game_audience.enhanced.load_logs_enhanced suspend;
+
+--Check Task got created or if it has data
+--show tasks;
+--select system$stream_has_data('ags_game_audience.enhanced.ed_cdc_stream');
+--select * from ags_game_audience.enhanced.ed_cdc_stream;
+
+/*
+select * from table(my_db.information_schema.task_history()) 
+where name =    'LOAD_LOGS_ENHANCED'
+order by scheduled_time desc;
+*/
+
+--execute task load_logs_enhanced; (Used to execute task manually)
+--truncate table ags_game_audience.enhanced.pl_logs_enhanced;
+
+
+
+
+/*--------------------------------------------------------------------------------------------
+                                        Testing Zone
+--------------------------------------------------------------------------------------------*/
+--- Tallying the load from pipeline
+--step 1: Checking if the files are loaded into the external stage
+with row_count as 
+(select count($1) row_count from @ags_game_audience.raw.uni_kishore_pipeline)
+
+--step 2: Checking if the files are copied into the table from stage
+
+select  'External Stage' object, 'Total' status, (select row_count::varchar(25) from row_count) row_count
+
+union all
+select 
+    'ed_pipeline_logs' as object,
+    case 
+        when count(a.*) = (select row_count from row_count) 
+        then 'Successful' 
+        else 'Failed' 
+    end as Status, 
+    count(a.*) row_count
+from ags_game_audience.raw.ed_pipeline_logs a
+
+
+union all
+--step 3: Checking if the final Enhanced log table shows the right count of rows
+select 
+    'enhanced.pl_logs_enhanced' as object,
+    (case 
+        when count(b.*) = (select row_count from row_count) 
+        then 'Successful' 
+        else 'Failed' 
+    end) as Status,
+    count(b.*) row_count
+from ags_game_audience.enhanced.pl_logs_enhanced b;
+
+--Only last tally step will have an output. Successful in status for 2 and 3 means all rows got added.
+
